@@ -1,4 +1,4 @@
-# Using smallest debian stretch image because debian buster doesn't have pstotest package as of 2/2/2020
+# Using MiniDeb Stretch image because Debian Buster doesn't have pstotext package as of 2/2/2020
 FROM bitnami/minideb:stretch
 # FROM debian:buster
 
