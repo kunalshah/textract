@@ -1,19 +1,41 @@
-## Docker container for textract
+Extract text from a binary file/image/other text formats
 
-Docker container to extract text from any document using textract
+### Credits
+1. [textract](https://textract.readthedocs.io)
 
-Extract text from any document. no muss. no fuss. http://textract.readthedocs.org
+### How to use this docker image
 
-#### Pull the image:
+The docker image uses `/data` folder as a volume where document will be read/written. Hence the user needs to provide the folder that would be mapped to `/data`
 
-	sudo docker pull kunalshah/textract
+For example, 
+Download [BookReporter.pdf](https://github.com/w3c/epubcheck/blob/master/docs/BookReporter.pdf) file to the Downloads folder of your home directory (~/Downloads)
 
-#### Sample text extraction:
+To extract text from `BookReporter.pdf` and save it to file `BookReporter.txt`, run
 
-##### Download doctorowother05complexecosystemsepub.epub file (http://manybooks.net/titles/doctorowother05complexecosystems.html) to your Desktop folder
-	sudo docker run -v ~/Desktop/doctorowother05complexecosystemsepub.epub:/var/lib/doctorowother05complexecosystemsepub.epub kunalshah/textract /var/lib/doctorowother05complexecosystemsepub.epub
+```
+docker run \
+--rm \
+-v ~/Downloads:/data \
+kunalshah/textract:latest \
+-o /data/BookReporter.txt \
+/data/BookReporter.pdf
+```
 
-##### Download Algorithms.pdf file (http://upload.wikimedia.org/wikipedia/commons/8/81/Algorithms.pdf) to your Desktop folder
-	sudo docker run -v ~/Desktop/Algorithms.pdf:/var/lib/Algorithms.pdf kunalshah/textract /var/lib/Algorithms.pdf
+See converted text file
+
+```
+cat ~/Downloads/BookReporter.txt
+```
 
 
+### About textract
+
+
+#### CLI options
+
+Read [here](https://textract.readthedocs.io/en/v1.3.0/command_line_interface.html)
+
+
+#### Supported file types
+
+Read [here](https://textract.readthedocs.io/en/stable/index.html)
