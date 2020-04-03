@@ -15,16 +15,16 @@ To extract text from `BookReporter.pdf` and save it to file `BookReporter.txt`, 
 ```
 docker run \
 --rm \
--v ~/Downloads:/data \
+-v "`pwd`:/data" \
 kunalshah/textract:latest \
--o /data/BookReporter.txt \
-/data/BookReporter.pdf
+-o converted.txt \
+file.pdf
 ```
 
 See converted text file
 
 ```
-cat ~/Downloads/BookReporter.txt
+cat converted.txt
 ```
 
 
